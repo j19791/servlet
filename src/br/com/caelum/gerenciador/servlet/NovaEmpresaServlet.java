@@ -1,8 +1,8 @@
 package br.com.caelum.gerenciador.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -52,8 +52,17 @@ public class NovaEmpresaServlet extends HttpServlet {
 
 		banco.adiciona(empresa);
 
-		PrintWriter out = response.getWriter();
-		out.println("<html><body>Empresa " + nomeEmpresa + " cadastrada com sucesso!</body></html>");
+		/*
+		 * PrintWriter out = response.getWriter(); out.println("<html><body>Empresa " +
+		 * nomeEmpresa + " cadastrada com sucesso!</body></html>");
+		 */
+
+		// chamar o JSP
+		RequestDispatcher rd = request.getRequestDispatcher("/novaEmpresaCriada.jsp");// destino da requisição
+		request.setAttribute("empresa", empresa.getNome());// O string name funciona como apelido (usado no jsp), que
+															// será empresa e em seguida o objeto empresa.
+		rd.forward(request, response);
+
 	}
 
 }

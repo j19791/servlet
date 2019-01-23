@@ -1,9 +1,9 @@
 package br.com.caelum.gerenciador.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,16 +21,22 @@ public class ListaEmpresasServlet extends HttpServlet {
 
 		List<Empresa> lista = new Banco().getEmpresas();
 
-		PrintWriter out = response.getWriter();
-		out.println("<html><body>");
-		out.println("<ul>");
+		// jogando p/ o jsp
+		/*
+		 * PrintWriter out = response.getWriter(); out.println("<html><body>");
+		 * out.println("<ul>");
+		 * 
+		 * for (Empresa empresa : lista) { out.println("<li>" + empresa.getNome() +
+		 * "</li>"); }
+		 * 
+		 * out.println("</ul>"); out.println("</body></html>");
+		 */
 
-		for (Empresa empresa : lista) {
-			out.println("<li>" + empresa.getNome() + "</li>");
-		}
-
-		out.println("</ul>");
-		out.println("</body></html>");
+		// chamar o JSP
+		RequestDispatcher rd = request.getRequestDispatcher("/listaEmpresas.jsp");// destino da requisição
+		request.setAttribute("lista", lista);// O string name funciona como apelido (usado no jsp), que
+												// será empresa e em seguida o objeto empresa.
+		rd.forward(request, response);
 
 	}
 
