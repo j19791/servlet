@@ -17,7 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 public class ListaEmpresasServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	// como esse servlet pode ser chamado do despacho do Post do formNovaEmpresa >
+	// NovaEmpresaServlet, usar service e nao doGet
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		List<Empresa> lista = new Banco().getEmpresas();
 

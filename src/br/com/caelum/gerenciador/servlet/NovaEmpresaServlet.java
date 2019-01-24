@@ -5,7 +5,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -72,11 +71,18 @@ public class NovaEmpresaServlet extends HttpServlet {
 		 * nomeEmpresa + " cadastrada com sucesso!</body></html>");
 		 */
 
-		// chamar o JSP
-		RequestDispatcher rd = request.getRequestDispatcher("/novaEmpresaCriada.jsp");// destino da requisição
-		request.setAttribute("empresa", empresa.getNome());// O string name funciona como apelido (usado no jsp), que
-															// será empresa e em seguida o objeto empresa.
-		rd.forward(request, response);
+		// redirecionamento server side - problema do confirm form submission
+		// RequestDispatcher rd = request.getRequestDispatcher("/listaEmpresas");//
+		// chama agora o servlet p/ listar as
+		// empresas depois do cadastro
+
+		request.setAttribute("empresa", empresa.getNome());
+
+		// rd.forward(request, response);
+
+		// Redirecionamento Client Side: navegador que enviará uma nova requisição a
+		// partir da resposta.
+		response.sendRedirect("listaEmpresas");
 
 	}
 
