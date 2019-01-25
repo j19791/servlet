@@ -6,7 +6,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-
+<c:url value="removeEmpresa" var="linkServletRemoveEmpresa"></c:url>
+<c:url value="mostraEmpresa" var="linkServletMostraEmpresa"></c:url>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -24,7 +25,11 @@ Lista de Empresas com JSTL
 	<c:forEach items="${ lista }" var="empresa">
 	
 	
-	<li>${ empresa.nome } -  <fmt:formatDate value="${empresa.dataAbertura }" pattern="dd/MM/yyyy" /> </li> <!-- internamente é empresa.getNome() -->
+	<li>${ empresa.nome } -  <fmt:formatDate value="${empresa.dataAbertura }" pattern="dd/MM/yyyy" /> 
+	<a href="${linkServletMostraEmpresa}?id=${empresa.id}">editar</a>
+	<a href="${linkServletRemoveEmpresa}?id=${empresa.id}">remove</a>
+	
+	</li> <!-- internamente é empresa.getNome() -->
 	
 	
 	
