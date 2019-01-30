@@ -5,15 +5,18 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.caelum.gerenciador.modelo.Banco;
+import br.com.caelum.gerenciador.modelo.Empresa;
+
 /**
  * Servlet implementation class ListaEmpresasServlet
  */
-@WebServlet("/listaEmpresas")
+// @WebServlet("/listaEmpresas") utilizando agora o controlador
+// UnicaEntradaServlet
 public class ListaEmpresasServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
