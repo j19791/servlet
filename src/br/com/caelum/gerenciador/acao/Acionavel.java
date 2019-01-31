@@ -8,6 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface Acionavel {
 
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
 }

@@ -11,7 +11,7 @@ import br.com.caelum.gerenciador.modelo.Banco;
 public class RemoveEmpresa implements Acionavel {
 
 	@Override
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("removendo empresa");
 
 		String paramId = request.getParameter("id");
@@ -21,8 +21,7 @@ public class RemoveEmpresa implements Acionavel {
 
 		Banco banco = new Banco();
 		banco.removeEmpresa(id);
-
-		response.sendRedirect("entrada?acao=ListaEmpresas");
+		return "redirect:entrada?acao=ListaEmpresas";// agora é o controlador q vai fazer o dispatcher ou redirect
 
 	}
 

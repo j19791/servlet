@@ -15,7 +15,7 @@ import br.com.caelum.gerenciador.modelo.Empresa;
 public class AlteraEmpresa implements Acionavel {
 
 	@Override
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String nomeEmpresa = request.getParameter("nome");
 		String paramDataEmpresa = request.getParameter("data");
@@ -39,7 +39,9 @@ public class AlteraEmpresa implements Acionavel {
 		empresa.setNome(nomeEmpresa);
 		empresa.setDataAbertura(dataAbertura);
 
-		response.sendRedirect("entrada?acao=ListaEmpresas");
+		return "redirect:entrada?acao=ListaEmpresas";
+
+		// agora é o controlador q vai fazer o dispatcher ou redirect
 
 	}
 

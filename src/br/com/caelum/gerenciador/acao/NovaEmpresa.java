@@ -1,4 +1,4 @@
-package br.com.caelum.gerenciador.servlet;
+package br.com.caelum.gerenciador.acao;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -16,7 +16,7 @@ import br.com.caelum.gerenciador.modelo.Empresa;
 public class NovaEmpresa implements Acionavel {
 
 	@Override
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Cadastrando nova empresa");
 
 		String nomeEmpresa = request.getParameter("nome");
@@ -39,7 +39,7 @@ public class NovaEmpresa implements Acionavel {
 
 		request.setAttribute("lista", empresa.getNome());
 
-		response.sendRedirect("entrada?acao=ListaEmpresas");
+		return "redirect:entrada?acao=ListaEmpresas";// agora é o controlador q vai fazer o dispatcher ou redirect
 
 	}
 
