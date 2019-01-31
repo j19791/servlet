@@ -9,6 +9,8 @@ public class Banco {
 	private static List<Empresa> empresas = new ArrayList<>(); // static: a lista é da classe Banco e não dos objetos
 																// instanciados de banco
 
+	private static List<Usuario> listaUsuarios = new ArrayList<>();
+
 	private static Integer chaveSequencial = 0;
 
 	// O código estático que criaremos será executado quando a máquina virtual
@@ -23,6 +25,9 @@ public class Banco {
 		empresa2.setId(Banco.chaveSequencial++);
 		empresas.add(empresa);
 		empresas.add(empresa2);
+
+		listaUsuarios.add(new Usuario("jeff", "1234"));
+		listaUsuarios.add(new Usuario("Ana", "5678"));
 
 	}
 
@@ -57,6 +62,17 @@ public class Banco {
 		}
 
 		return null;
+	}
+
+	public Usuario existeUsuario(String login, String senha) {
+		for (Usuario usuario : listaUsuarios) {
+			if (usuario.ehIgual(login, senha)) {
+				return usuario;
+			}
+		}
+
+		return null;
+
 	}
 
 }
