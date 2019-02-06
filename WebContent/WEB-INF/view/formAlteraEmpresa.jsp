@@ -13,6 +13,8 @@
 </head>
 <body>
 
+<c:import url="logout-parcial.jsp"/>
+
 	<!-- por padrão, o valor do atributo method é get -->
     <form action="${linkEntradaServlet}" method="post">
 

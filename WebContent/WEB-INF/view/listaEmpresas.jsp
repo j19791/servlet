@@ -16,7 +16,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+Usuario Logado: ${usuarioLogado.login } <br>
+<c:import url="logout-parcial.jsp"/>
 Lista de Empresas com JSTL
 
 

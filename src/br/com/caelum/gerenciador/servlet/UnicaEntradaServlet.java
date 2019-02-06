@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.caelum.gerenciador.acao.Acionavel;
 
@@ -21,6 +22,17 @@ public class UnicaEntradaServlet extends HttpServlet {
 		System.out.println("entrou na entrada");
 
 		String paramAcao = request.getParameter("acao");
+
+		// Autorização da aplicação pelo controlador
+		HttpSession sessao = request.getSession();
+		boolean usuarioNaoEstaLogado = (sessao.getAttribute("usuarioLogado") == null);
+		// as ações de Login e LoginForm não precisam estar protegidas: p/ tratar o
+		// problema de too many redirects
+		boolean ehUmaAcaoProtegida = !(paramAcao.equals("Login") || paramAcao.equals("LoginForm"));
+		if (ehUmaAcaoProtegida & usuarioNaoEstaLogado) {
+			response.sendRedirect("entrada?acao=LoginForm");
+			return; // não deverá executar o restando do métodp
+		}
 
 		String nomeDaClasse = "br.com.caelum.gerenciador.acao." + paramAcao; // refatorando o codigo, removendo os ifs e
 																				// utilizando reflexao
